@@ -1,1 +1,68 @@
-<p>register works!</p>
+<h1 style="text-align: center">Login Page</h1>
+
+<div>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="container">
+      <mat-form-field>
+        <input matInput placeholder="Name" type="name" formControlName="name" />
+        <mat-hint *ngIf="registerForm.controls['name'].errors"
+          >Name is requied</mat-hint
+        >
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Username"
+          type="name"
+          formControlName="username"
+        />
+        <mat-hint *ngIf="registerForm.get('email')?.errors"
+          >Username is requied</mat-hint
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Email"
+          type="email"
+          formControlName="email"
+        />
+        <mat-hint *ngIf="registerForm.get('email')?.errors"
+          >Email is requied & In valid format</mat-hint
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Password"
+          type="password"
+          formControlName="password"
+        />
+        <mat-hint *ngIf="registerForm.controls['password'].errors"
+          >Password is requied</mat-hint
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Confirm Password"
+          type="password"
+          formControlName="passwordConfirm"
+        />
+        <mat-hint *ngIf="registerForm.controls['passwordConfirm'].errors"
+          >Please type password again</mat-hint
+        >
+      </mat-form-field>
+
+      <button
+        mat-flat-button
+        color="primary"
+        [disabled]="!registerForm.valid"
+        type="submit"
+      >
+        Login
+      </button>
+    </div>
+  </form>
+</div>
