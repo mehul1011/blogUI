@@ -40,8 +40,11 @@
           formControlName="password"
         />
         <mat-hint *ngIf="registerForm.controls['password'].errors"
-          >Password is requied</mat-hint
+          >Password is requied & with Number</mat-hint
         >
+        <mat-hint
+          *ngIf="registerForm.get('password')?.hasError('passwordInvalid')"
+        ></mat-hint>
       </mat-form-field>
       <mat-form-field>
         <input
@@ -51,8 +54,11 @@
           formControlName="passwordConfirm"
         />
         <mat-hint *ngIf="registerForm.controls['passwordConfirm'].errors"
-          >Please type password again</mat-hint
+          >Please type password again and it should match</mat-hint
         >
+        <mat-hint *ngIf="registerForm.hasError('passwordNotMatching')">
+          Password should match
+        </mat-hint>
       </mat-form-field>
 
       <button

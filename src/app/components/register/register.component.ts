@@ -1,8 +1,42 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { map } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+
+class CustomValidators {
+  static passwordContainsNumber(
+    // static means the function belongs to the class itself
+    control: AbstractControl
+  ): ValidationErrors | null {
+    const regex = /\d/;
+    if (regex.test(control.value) && control.value !== null) {
+      return null; // no validation error
+    } else {
+      return { passwordInvalid: true };
+    }
+  }
+  static passwordMatch(control: AbstractControl): ValidationErrors | null {
+    const password = control.get('password')?.value;
+    const passwordConfirm = control.get('passwordConfirm')?.value;
+
+    if (
+      password === passwordConfirm &&
+      password !== null &&
+      passwordConfirm !== null
+    ) {
+      return null;
+    } else {
+      return { passwordNotMatching: true };
+    }
+  }
+}
 
 @Component({
   selector: 'app-register',
@@ -31,13 +65,13 @@ export class RegisterComponent implements OnInit {
           [
             Validators.required,
             Validators.minLength(3),
-            //  CustomValidators.passwordContainsNumbers
+            CustomValidators.passwordContainsNumber,
           ],
         ],
         passwordConfirm: [null, [Validators.required, Validators.minLength(3)]],
       },
       {
-        // validators: CustomValidators.passwordMatchValidator
+        validators: CustomValidators.passwordMatch, // applies to whole form, and in the whole from it can compare both pass fields for equality
       }
     );
   }
