@@ -15,6 +15,7 @@ export class UsersComponent implements OnInit {
   dataSource!: UserData;
   displayedColumns: string[] = ['id', 'name', 'username', 'email', 'role'];
   pageEvent!: PageEvent;
+  filterValue!: string;
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
@@ -23,20 +24,36 @@ export class UsersComponent implements OnInit {
   initDataSource() {
     this.userService
       .findAllUsers(1, 1)
-      .pipe(
-        tap((users) => console.log(users)),
-        map((userData: UserData) => (this.dataSource = userData))
-      )
+      .pipe(map((userData: UserData) => (this.dataSource = userData)))
       .subscribe();
   }
 
   onPaginateChange(event: PageEvent) {
     let page = event.pageIndex;
     let size = event.pageSize;
-    page = page + 1;
+
+    if (this.filterValue == null || this.filterValue == undefined) {
+      page = page + 1;
+      this.userService
+        .findAllUsers(page, size)
+        .pipe(map((userData: UserData) => (this.dataSource = userData)))
+        .subscribe();
+    } else {
+      this.userService
+        .paginateByName(page, size, this.filterValue)
+        .pipe(map((userData: UserData) => (this.dataSource = userData)))
+        .subscribe();
+    }
+  }
+
+  findByUserName(username: string) {
     this.userService
-      .findAllUsers(page, size)
-      .pipe(map((userData: UserData) => (this.dataSource = userData)))
+      .paginateByName(0, 1, username)
+      .pipe(
+        map((userData: UserData) => {
+          this.dataSource = userData;
+        })
+      )
       .subscribe();
   }
 }
