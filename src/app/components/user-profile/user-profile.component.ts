@@ -26,8 +26,10 @@ export class UserProfileComponent implements OnInit, OnDestroy {
       this.userService
         .findOne(this.userId)
         .pipe(
-          map((user: User) => {
-            this.user = user;
+          map((user: User | null) => {
+            if (user) {
+              this.user = user;
+            }
           })
         )
         .subscribe();

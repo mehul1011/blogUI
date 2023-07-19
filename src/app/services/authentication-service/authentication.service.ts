@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs';
+import { Observable, from, map, of, switchMap, tap } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 export interface LoginForm {
@@ -11,6 +11,7 @@ export interface LoginForm {
 export const JWT_TOKEN = 'blog-token';
 
 export interface User {
+  id?: number;
   name?: string;
   username?: string;
   email?: string;
@@ -47,6 +48,49 @@ export class AuthenticationService {
 
   isAuthenticated(): boolean {
     const token = localStorage.getItem(JWT_TOKEN);
-    return !this.jwtHelper.isTokenExpired(token);
+    console.log(this.getUserId());
+
+    if (token && token !== 'undefined') {
+      return !this.jwtHelper.isTokenExpired(token);
+    } else {
+      return false;
+    }
   }
+
+  getUserId(): Observable<number | null> {
+    const jwt = localStorage.getItem(JWT_TOKEN);
+    if (jwt && jwt !== 'undefined') {
+      const token = this.jwtHelper.decodeToken(jwt);
+      return of(token.user.id);
+    } else {
+      return of(null);
+    }
+
+    // if (!jwt) {
+    //   return of(null);
+    // }
+
+    // return from(this.jwtHelper.decodeToken()).pipe(
+    //   tap((decodedToken) => console.log(decodedToken)),
+    //   map((jwt) => {
+    //     if (jwt && jwt.user) {
+    //       jwt?.user?.id;
+    //     }
+    //   })
+    // );
+  }
+
+  // getUserId(): Observable<number | null> {
+  //   return of(localStorage.getItem(JWT_TOKEN)).pipe(
+  //     switchMap((jwt: string | null) => {
+  //       if (!jwt) {
+  //         return of(null);
+  //       }
+  //       return of(this.jwtHelper.decodeToken()).pipe(
+  //         tap((jwt) => console.log(jwt)),
+  //         map((jwt) => jwt?.user?.id ?? null)
+  //       );
+  //     })
+  //   );
+  // }
 }

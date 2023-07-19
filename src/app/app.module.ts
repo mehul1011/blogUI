@@ -19,9 +19,16 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { MatCardModule } from '@angular/material/card';
 import { UpdateUserProfileComponent } from './components/update-user-profile/update-user-profile.component';
-import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
+import { JWT_OPTIONS, JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { JWT_TOKEN } from './services/authentication-service/authentication.service';
+import { TokenService } from './services/token/token.service';
 
+export function jwtOptionsFactory(tokenService: TokenService) {
+  return {
+    tokenGetter: () => tokenService.token,
+  };
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,11 +53,19 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     MatTableModule,
     MatPaginatorModule,
     MatCardModule,
+    // JwtModule.forRoot({
+    //   jwtOptionsProvider: {
+    //     provide: JWT_OPTIONS,
+    //     useFactory: jwtOptionsFactory,
+    //     deps: [TokenService],
+    //   },
+    // }),
   ],
   providers: [
     JwtHelperService,
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    // TokenService,
   ],
   bootstrap: [AppComponent],
 })
