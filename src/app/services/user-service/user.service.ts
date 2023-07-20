@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, map, throwError } from 'rxjs';
+import { Observable, catchError, map, of, throwError } from 'rxjs';
 import { User } from '../authentication-service/authentication.service';
 
 export interface UserData {
@@ -50,7 +50,21 @@ export class UserService {
     );
   }
 
-  findOne(id: Number): Observable<User> {
-    return this.http.get(`/api/user/${id}`).pipe(map((user: User) => user));
+  findOne(id: any): Observable<any | null> {
+    if (id) {
+      return this.http.get(`/api/user/${id}`).pipe(map((user: User) => user));
+    }
+    return of(null);
+  }
+
+  updateOne(user: any): Observable<User> {
+    return this.http.put('/api/user/' + user.id, user);
+  }
+
+  uploadProfileImage(formData: FormData): Observable<any> {
+    return this.http.post<FormData>('/api/user/upload', formData, {
+      reportProgress: true,
+      observe: 'events',
+    });
   }
 }
