@@ -23,6 +23,8 @@ import { JWT_OPTIONS, JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { JWT_TOKEN } from './services/authentication-service/authentication.service';
 import { TokenService } from './services/token/token.service';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatIconModule } from '@angular/material/icon';
 
 export function jwtOptionsFactory(tokenService: TokenService) {
   return {
@@ -53,6 +55,8 @@ export function jwtOptionsFactory(tokenService: TokenService) {
     MatTableModule,
     MatPaginatorModule,
     MatCardModule,
+    MatProgressBarModule,
+    MatIconModule,
     // JwtModule.forRoot({
     //   jwtOptionsProvider: {
     //     provide: JWT_OPTIONS,
