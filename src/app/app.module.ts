@@ -25,6 +25,8 @@ import { JWT_TOKEN } from './services/authentication-service/authentication.serv
 import { TokenService } from './services/token/token.service';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatIconModule } from '@angular/material/icon';
+import { HomeComponent } from './components/home/home.component';
+import { AllBlogEntriesComponent } from './components/all-blog-entries/all-blog-entries.component';
 
 export function jwtOptionsFactory(tokenService: TokenService) {
   return {
@@ -39,6 +41,8 @@ export function jwtOptionsFactory(tokenService: TokenService) {
     UsersComponent,
     UserProfileComponent,
     UpdateUserProfileComponent,
+    HomeComponent,
+    AllBlogEntriesComponent,
   ],
   imports: [
     BrowserModule,

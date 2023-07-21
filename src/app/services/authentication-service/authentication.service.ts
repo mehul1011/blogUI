@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, from, map, of, switchMap, tap } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { User } from 'src/app/models/user.interface';
 
 export interface LoginForm {
   email: string;
@@ -9,17 +10,6 @@ export interface LoginForm {
 }
 
 export const JWT_TOKEN = 'blog-token';
-
-export interface User {
-  id?: number;
-  name?: string;
-  username?: string;
-  email?: string;
-  password?: string;
-  passwordConfirm?: string;
-  role?: string;
-  profileImage?: string;
-}
 
 @Injectable({
   providedIn: 'root',
