@@ -1,7 +1,10 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, tap, throwError } from 'rxjs';
-import { BlogEntriesPagable } from 'src/app/models/blog-entry.interface';
+import {
+  BlogEntriesPagable,
+  BlogEntry,
+} from 'src/app/models/blog-entry.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -20,5 +23,20 @@ export class BlogService {
         map((blogEntriesPagable: BlogEntriesPagable) => blogEntriesPagable),
         catchError((err) => throwError(() => err.message))
       );
+  }
+
+  postBlog(blogEntry: BlogEntry): Observable<BlogEntry> {
+    return this.http.post<BlogEntry>('/api/blog-entries', blogEntry);
+  }
+
+  uploadHeaderImage(formData: FormData): Observable<any> {
+    return this.http.post<FormData>(
+      '/api/blog-entries/image/upload',
+      formData,
+      {
+        reportProgress: true, // for progressBar UI
+        observe: 'events',
+      }
+    );
   }
 }

@@ -84,7 +84,6 @@ export class UpdateUserProfileComponent implements OnInit {
     this.userService
       .uploadProfileImage(formData)
       .pipe(
-        tap((e) => console.log(e)),
         map((event) => {
           switch (event.type) {
             case HttpEventType.UploadProgress:
