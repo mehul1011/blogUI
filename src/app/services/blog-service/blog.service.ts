@@ -39,4 +39,8 @@ export class BlogService {
       }
     );
   }
+
+  findOne(id: number): Observable<BlogEntry> {
+    return this.http.get<BlogEntry>('/api/blog-entries/' + id);
+  }
 }

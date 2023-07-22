@@ -1,9 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { File } from '../update-user-profile/update-user-profile.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BlogService } from 'src/app/services/blog-service/blog.service';
 import { catchError, map, of, tap } from 'rxjs';
 import { HttpErrorResponse, HttpEventType } from '@angular/common/http';
+import { File } from '../../user/update-user-profile/update-user-profile.component';
 import { Router } from '@angular/router';
 
 @Component({

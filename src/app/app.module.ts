@@ -13,12 +13,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
-import { UsersComponent } from './components/users/users.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
 import { MatCardModule } from '@angular/material/card';
-import { UpdateUserProfileComponent } from './components/update-user-profile/update-user-profile.component';
+import { UpdateUserProfileComponent } from './components/user/update-user-profile/update-user-profile.component';
 import { JWT_OPTIONS, JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { JWT_TOKEN } from './services/authentication-service/authentication.service';
@@ -26,10 +25,12 @@ import { TokenService } from './services/token/token.service';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { HomeComponent } from './components/home/home.component';
-import { AllBlogEntriesComponent } from './components/all-blog-entries/all-blog-entries.component';
-import { CreateBlogEntryComponent } from './components/create-blog-entry/create-blog-entry.component';
 
 import { MarkdownModule } from 'ngx-markdown';
+import { AllBlogEntriesComponent } from './components/blog-entries/all-blog-entries/all-blog-entries.component';
+import { CreateBlogEntryComponent } from './components/blog-entries/create-blog-entry/create-blog-entry.component';
+import { UsersComponent } from './components/user/users/users.component';
+import { ViewBlogEntryComponent } from './components/blog-entries/view-blog-entry/view-blog-entry.component';
 
 export function jwtOptionsFactory(tokenService: TokenService) {
   return {
@@ -47,6 +48,7 @@ export function jwtOptionsFactory(tokenService: TokenService) {
     HomeComponent,
     AllBlogEntriesComponent,
     CreateBlogEntryComponent,
+    ViewBlogEntryComponent,
   ],
   imports: [
     BrowserModule,
