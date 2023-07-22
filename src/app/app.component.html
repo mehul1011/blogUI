@@ -1,8 +1,15 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <span>Blog App</span>
+    <span routerLink="/home" class="home-link">Blog App</span>
     <span class="example-spacer"></span>
     <button mat-flat-button routerLink="/admin">Admin</button>
+    <button
+      mat-flat-button
+      style="margin-left: 20px"
+      routerLink="create-blog-entry"
+    >
+      Create Post
+    </button>
     <button mat-flat-button routerLink="/user" style="margin-left: 20px">
       Users
     </button>
@@ -16,9 +23,12 @@
         placeholder="login"
         (selectionChange)="navigateTo($event.value)"
       >
-        <mat-option *ngFor="let entry of entries" [value]="entry.link">{{
-          entry.name
-        }}</mat-option>
+        <mat-option (click)="navigateTo('login')">Login</mat-option>
+        <mat-option (click)="navigateTo('register')">Register</mat-option>
+        <mat-option (click)="navigateTo('update-profile')"
+          >Update Profile</mat-option
+        >
+        <mat-option (click)="logout()">Logout</mat-option>
       </mat-select>
     </mat-form-field>
   </mat-toolbar-row>

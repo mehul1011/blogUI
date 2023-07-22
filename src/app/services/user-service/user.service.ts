@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, of, throwError } from 'rxjs';
-import { User } from '../authentication-service/authentication.service';
+import { User } from 'src/app/models/user.interface';
 
 export interface UserData {
   items: User[];
