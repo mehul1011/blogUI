@@ -1,7 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Subscription, map } from 'rxjs';
+import { PageEvent } from '@angular/material/paginator';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Observable, Subscription, map, switchMap, tap } from 'rxjs';
+import { BlogEntriesPagable } from 'src/app/models/blog-entry.interface';
 import { User } from 'src/app/models/user.interface';
+import { BlogService } from 'src/app/services/blog-service/blog.service';
 import { UserService } from 'src/app/services/user-service/user.service';
 
 @Component({
@@ -9,34 +12,39 @@ import { UserService } from 'src/app/services/user-service/user.service';
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.scss'],
 })
-export class UserProfileComponent implements OnInit, OnDestroy {
-  userId!: number;
-  private sub!: Subscription;
+export class UserProfileComponent {
+  private userId$: Observable<number> = this.activatedRoute.params.pipe(
+    map((params: Params) => parseInt(params['id']))
+  );
 
-  user!: User;
+  user$: Observable<User> = this.userId$.pipe(
+    switchMap((userId: number) => this.userService.findOne(userId))
+  );
+
+  blogEntries$: Observable<BlogEntriesPagable> = this.userId$.pipe(
+    switchMap((userId: number) =>
+      this.blogService.indexAllBlogEntryByUserName(userId, 1, 3)
+    )
+  );
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private blogService: BlogService
   ) {}
 
-  ngOnInit(): void {
-    this.sub = this.activatedRoute.params.subscribe((params) => {
-      this.userId = parseInt(params['id']);
-      this.userService
-        .findOne(this.userId)
-        .pipe(
-          map((user: User | null) => {
-            if (user) {
-              this.user = user;
-            }
-          })
+  onPaginateChange(event: PageEvent) {
+    return this.userId$
+      .pipe(
+        tap(
+          (userId: number) =>
+            (this.blogEntries$ = this.blogService.indexAllBlogEntryByUserName(
+              userId,
+              event.pageIndex,
+              event.pageSize
+            ))
         )
-        .subscribe();
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.sub.unsubscribe();
+      )
+      .subscribe();
   }
 }

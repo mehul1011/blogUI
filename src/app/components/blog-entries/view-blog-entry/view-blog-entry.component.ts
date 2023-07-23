@@ -16,7 +16,6 @@ export class ViewBlogEntryComponent {
       const blogEntyID: number = parseInt(params['id']);
       return this.blogService.findOne(blogEntyID).pipe(
         map((blogEntry: BlogEntry) => {
-          console.log(blogEntry);
           return blogEntry;
         })
       );

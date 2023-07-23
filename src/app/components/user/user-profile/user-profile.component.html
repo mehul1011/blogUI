@@ -1,4 +1,4 @@
-<div *ngIf="user" class="main-div">
+<div *ngIf="user$ | async as user" class="main-div">
   <mat-card class="card">
     <mat-card-header>
       <div mat-card-avatar>
@@ -15,6 +15,11 @@
     <mat-card-content>
       <p>Username: {{ user.username }}</p>
       <p>Role: {{ user.role }}</p>
+      <h2>Blog Entries of {{ user.username }}</h2>
+      <app-all-blog-entries
+        [blogEntries]="(blogEntries$ | async) || undefined"
+        (paginate)="onPaginateChange($event)"
+      ></app-all-blog-entries>
     </mat-card-content>
   </mat-card>
 </div>

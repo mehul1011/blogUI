@@ -1,1 +1,4 @@
-<app-all-blog-entries></app-all-blog-entries>
+<app-all-blog-entries
+  [blogEntries]="(blogEntries$ | async) || undefined"
+  (paginate)="onPaginateChange($event)"
+></app-all-blog-entries>
