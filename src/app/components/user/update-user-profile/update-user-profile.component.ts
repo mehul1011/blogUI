@@ -3,12 +3,19 @@ import {
   HttpEvent,
   HttpEventType,
 } from '@angular/common/http';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Inject,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { catchError, map, of, switchMap, tap } from 'rxjs';
 import { User } from 'src/app/models/user.interface';
 import { AuthenticationService } from 'src/app/services/authentication-service/authentication.service';
 import { UserService } from 'src/app/services/user-service/user.service';
+import { WINDOW } from 'src/app/window-token';
 export interface File {
   data: any;
   progress: number;
@@ -20,6 +27,8 @@ export interface File {
   styleUrls: ['./update-user-profile.component.scss'],
 })
 export class UpdateUserProfileComponent implements OnInit {
+  origin = this.window.location.origin;
+
   form!: FormGroup;
   @ViewChild('fileUpload', { static: false }) fileUpload!: ElementRef;
   file: File = {
@@ -30,6 +39,7 @@ export class UpdateUserProfileComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthenticationService,
+    @Inject(WINDOW) private window: Window,
     private userService: UserService
   ) {}
 

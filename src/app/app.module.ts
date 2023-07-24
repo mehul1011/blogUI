@@ -31,12 +31,14 @@ import { AllBlogEntriesComponent } from './components/blog-entries/all-blog-entr
 import { CreateBlogEntryComponent } from './components/blog-entries/create-blog-entry/create-blog-entry.component';
 import { UsersComponent } from './components/user/users/users.component';
 import { ViewBlogEntryComponent } from './components/blog-entries/view-blog-entry/view-blog-entry.component';
+import { WINDOW_PROVIDERS } from './window-token';
+// import { environment } from '../environments/environment';
 
-export function jwtOptionsFactory(tokenService: TokenService) {
-  return {
-    tokenGetter: () => tokenService.token,
-  };
-}
+// export function jwtOptionsFactory(tokenService: TokenService) {
+//   return {
+//     tokenGetter: () => tokenService.token,
+//   };
+// }
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,9 +79,11 @@ export function jwtOptionsFactory(tokenService: TokenService) {
     // }),
   ],
   providers: [
+    WINDOW_PROVIDERS,
     JwtHelperService,
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    // { provide: 'API_URL', useValue: environment },
     // TokenService,
   ],
   bootstrap: [AppComponent],

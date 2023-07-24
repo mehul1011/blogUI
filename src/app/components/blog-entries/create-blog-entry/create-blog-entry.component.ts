@@ -1,10 +1,17 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Inject,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BlogService } from 'src/app/services/blog-service/blog.service';
 import { catchError, map, of, tap } from 'rxjs';
 import { HttpErrorResponse, HttpEventType } from '@angular/common/http';
 import { File } from '../../user/update-user-profile/update-user-profile.component';
 import { Router } from '@angular/router';
+import { WINDOW } from 'src/app/window-token';
 
 @Component({
   selector: 'app-create-blog-entry',
@@ -12,6 +19,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./create-blog-entry.component.scss'],
 })
 export class CreateBlogEntryComponent implements OnInit {
+  origin = this.window.location.origin;
+
   form!: FormGroup;
   @ViewChild('fileUpload', { static: false }) fileUpload!: ElementRef;
   file: File = {
@@ -22,7 +31,8 @@ export class CreateBlogEntryComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private blogService: BlogService,
-    private router: Router
+    private router: Router,
+    @Inject(WINDOW) private window: Window
   ) {}
 
   ngOnInit(): void {
