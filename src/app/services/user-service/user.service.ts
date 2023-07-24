@@ -29,10 +29,14 @@ export class UserService {
     let params = new HttpParams();
     params = params.append('page', String(page));
     params = params.append('limit', String(limit));
-    return this.http.get('/api/user', { params }).pipe(
-      map((userData: any) => userData),
-      catchError((err) => throwError(() => err))
-    );
+    return this.http
+      .get('http://blogapp.ap-south-1.elasticbeanstalk.com/api/user', {
+        params,
+      })
+      .pipe(
+        map((userData: any) => userData),
+        catchError((err) => throwError(() => err))
+      );
   }
 
   paginateByName(

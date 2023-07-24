@@ -1,7 +1,0 @@
-{
-  "/api": {
-    "target": "http://blogapp.ap-south-1.elasticbeanstalk.com/",
-    "secure": false,
-    "crossOrigin": true
-  }
-}
