@@ -30,7 +30,7 @@ export class UserService {
     params = params.append('page', String(page));
     params = params.append('limit', String(limit));
     return this.http
-      .get('http://blogapp.ap-south-1.elasticbeanstalk.com/api/user', {
+      .get('/api/user', {
         params,
       })
       .pipe(
