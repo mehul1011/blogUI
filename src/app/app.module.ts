@@ -32,6 +32,7 @@ import { CreateBlogEntryComponent } from './components/blog-entries/create-blog-
 import { UsersComponent } from './components/user/users/users.component';
 import { ViewBlogEntryComponent } from './components/blog-entries/view-blog-entry/view-blog-entry.component';
 import { WINDOW_PROVIDERS } from './window-token';
+import { environment } from 'src/environments/environment';
 // import { environment } from '../environments/environment';
 
 // export function jwtOptionsFactory(tokenService: TokenService) {
@@ -83,7 +84,7 @@ import { WINDOW_PROVIDERS } from './window-token';
     JwtHelperService,
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    // { provide: 'API_URL', useValue: environment },
+    { provide: 'NODE_ENV', useValue: environment },
     // TokenService,
   ],
   bootstrap: [AppComponent],

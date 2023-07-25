@@ -1,0 +1,4 @@
+export const environment = {
+  production: 'REPLACE_WITH_ENVIRONMENT_PRODUCTION',
+  NODE_ENV: 'REPLACE_WITH_ENVIRONMENT_NODE_ENV',
+};
