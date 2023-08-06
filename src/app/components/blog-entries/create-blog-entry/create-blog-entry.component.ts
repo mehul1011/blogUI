@@ -19,7 +19,7 @@ import { WINDOW } from 'src/app/window-token';
   styleUrls: ['./create-blog-entry.component.scss'],
 })
 export class CreateBlogEntryComponent implements OnInit {
-  origin = this.window.location.origin;
+  // origin = this.window.location.origin;
 
   form!: FormGroup;
   @ViewChild('fileUpload', { static: false }) fileUpload!: ElementRef;

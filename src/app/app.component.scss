@@ -9,3 +9,11 @@
 .home-link:hover {
   cursor: pointer;
 }
+
+.nav-toolbar {
+  background: #030712;
+  color: white;
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+}

@@ -10,9 +10,7 @@
       <div>
         <img
           *ngIf="blogEntry.headerImage !== null; else placeHolderImage"
-          src="{{ origin }}/api/blog-entries/blog-image/{{
-            blogEntry.headerImage
-          }}"
+          src="/api/blog-entries/blog-image/{{ blogEntry.headerImage }}"
           alt=""
         />
         <ng-template #placeHolderImage>

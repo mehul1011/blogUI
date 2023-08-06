@@ -27,7 +27,7 @@ export interface File {
   styleUrls: ['./update-user-profile.component.scss'],
 })
 export class UpdateUserProfileComponent implements OnInit {
-  origin = this.window.location.origin;
+  // origin = this.window.location.origin;
 
   form!: FormGroup;
   @ViewChild('fileUpload', { static: false }) fileUpload!: ElementRef;

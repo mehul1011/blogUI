@@ -15,7 +15,7 @@ export class AllBlogEntriesComponent {
   // dataSource: Observable<BlogEntriesPagable> = this.blogService.indexAll(1, 1);
   pageEvent!: PageEvent;
 
-  origin = this.window.location.origin;
+  // origin = this.window.location.origin;
 
   @Input() blogEntries: BlogEntriesPagable | undefined;
   @Output() paginate: EventEmitter<PageEvent> = new EventEmitter<PageEvent>();

@@ -8,7 +8,7 @@ import { AuthenticationService } from './services/authentication-service/authent
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'blogFrontend';
+  title = '<MehulCodes />';
   constructor(
     private router: Router,
     private authService: AuthenticationService

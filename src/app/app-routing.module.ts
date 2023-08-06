@@ -9,6 +9,7 @@ import { HomeComponent } from './components/home/home.component';
 import { UsersComponent } from './components/user/users/users.component';
 import { CreateBlogEntryComponent } from './components/blog-entries/create-blog-entry/create-blog-entry.component';
 import { ViewBlogEntryComponent } from './components/blog-entries/view-blog-entry/view-blog-entry.component';
+import { PortfolioComponent } from './portfolio/portfolio.component';
 
 const routes: Routes = [
   {
@@ -48,9 +49,14 @@ const routes: Routes = [
       },
     ],
   },
+
   {
     path: 'home',
     component: HomeComponent,
+  },
+  {
+    path: 'portfolio',
+    component: PortfolioComponent,
   },
   {
     path: 'create-blog-entry',
@@ -59,7 +65,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: '/portfolio',
     pathMatch: 'full',
   },
 ];

@@ -14,7 +14,7 @@ import { WINDOW } from 'src/app/window-token';
   styleUrls: ['./user-profile.component.scss'],
 })
 export class UserProfileComponent {
-  origin = this.window.location.origin;
+  // origin = this.window.location.origin;
   private userId$: Observable<number> = this.activatedRoute.params.pipe(
     map((params: Params) => parseInt(params['id']))
   );

@@ -1,0 +1,70 @@
+.portfolio-container {
+}
+.portfolio-header {
+    padding: 100px 80px 80px 80px;
+    display: flex;
+    // height: 100%;
+    // width: 100%;
+}
+
+.portfolio-profile {
+    
+display: flex;
+min-width: 384px;
+flex-direction: column;
+justify-content: center;
+align-items: flex-end;
+flex: 1 0 0;
+align-self: stretch;
+}
+
+.portfolio-profile-pic {
+    width: 280px;
+height: 320px;
+flex-shrink: 0;
+background-image: url('../../assets/placeholders/zelda.svg');
+}
+
+.portfolio-profile-shadow {
+    width: 280px;
+height: 320px;
+flex-shrink: 0;
+position: absolute;
+margin: 25px -20px 0px 0px;
+z-index: -1;
+    border: 8px solid var(--gray-dark-default, #030712);
+background: var(--gray-dark-200, #374151);
+}
+
+.portfolio-content-heading {
+    color: var(--gray-dark-900, #F9FAFB);
+
+/* Heading/H1/Bold - Desktop */
+font-family: Inter;
+font-size: 60px;
+font-style: normal;
+font-weight: 700;
+line-height: 72px; /* 120% */
+letter-spacing: -1.2px;
+}
+
+.content {
+    color: var(--gray-dark-600, #D1D5DB);
+
+/* Body2/Normal - All */
+font-family: Inter;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px; /* 150% */
+}
+
+.portfolio-aboutme {
+        display: flex;
+    padding: 20px 10px 10px 10px;
+
+        flex-direction: row;
+        gap: 48px;
+
+    background: var(--gray-dark-50, #374151);
+}
