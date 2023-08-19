@@ -11,7 +11,7 @@ import { WINDOW } from 'src/app/window-token';
   styleUrls: ['./view-blog-entry.component.scss'],
 })
 export class ViewBlogEntryComponent {
-  origin = this.window.location.origin;
+  // origin = this.window.location.origin;
 
   // $ is naming convention to identify that variable is a Observable
   blogEntry$: Observable<BlogEntry> = this.activatedRoute.params.pipe(

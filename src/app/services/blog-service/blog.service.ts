@@ -18,7 +18,7 @@ export class BlogService {
     params = params.append('limit', String(size));
 
     return this.http
-      .get<BlogEntriesPagable>('http://localhost:3002/api/blog-entries', {
+      .get<BlogEntriesPagable>('/api/blog-entries', {
         params,
       })
       .pipe(
