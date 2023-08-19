@@ -1,8 +1,16 @@
-
-  <mat-toolbar class="nav-toolbar">
-  <mat-toolbar-row>
-    <span routerLink="/home" class="home-link">{{title}}</span>
-    <span class="example-spacer"></span>
+<mat-toolbar class="nav-toolbar">
+  <mat-toolbar-row class="common-navbar-style">
+    <div class="nav-toolbar-content">
+      <span routerLink="/portfolio" class="home-link">{{title}}</span>
+      <div class="misc-nav-content">
+        <span (click)="scrollToContent('portfolioAboutme')">About Me</span>
+        <span (click)="scrollToContent('portfolioHeaderSkills')">My Skills</span>
+        <span (click)="scrollToContent('portfolioExperience')">Experience</span>
+        <span (click)="scrollToContent('portfolioContactMe')">Contact Me</span>
+        <span (click)="scrollToContent('portfolioHeaderProject')">Projects</span>
+      </div>
+    </div>
+    <!-- <span class="example-spacer"></span>
     <button mat-flat-button routerLink="/admin">Admin</button>
     <button
       mat-flat-button
@@ -13,10 +21,10 @@
     </button>
     <button mat-flat-button routerLink="/user" style="margin-left: 20px">
       Users
-    </button>
+    </button> -->
     <!-- <a routerLink="/login">Login</a>
     <a routerLink="/register">Register</a> -->
-    <mat-form-field
+    <!-- <mat-form-field
       style="margin: 18px 0px 0px 20px"
       name="loginRegisterDropDown"
     >
@@ -31,7 +39,7 @@
         >
         <mat-option (click)="logout()">Logout</mat-option>
       </mat-select>
-    </mat-form-field>
+    </mat-form-field> -->
   </mat-toolbar-row>
 </mat-toolbar>
 <router-outlet></router-outlet>

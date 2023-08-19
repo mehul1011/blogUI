@@ -17,3 +17,24 @@
   width: 100%;
   z-index: 999;
 }
+
+.common-navbar-style {
+  border-bottom: 1px solid;
+}
+
+.nav-toolbar-content {
+  display: flex;
+  width: inherit;
+  justify-content: flex-start;
+}
+
+.misc-nav-content {
+  width: inherit;
+  font-size: small;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.misc-nav-content>span {
+  cursor: pointer;
+}
