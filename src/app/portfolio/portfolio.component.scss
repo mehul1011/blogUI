@@ -93,11 +93,15 @@
 .portfolio-aboutme {
     // display: flex;
     padding: 40px 40px 40px 40px;
-
     // flex-direction: row;
     gap: 48px;
-
     background: var(--gray-dark-50, #374151);
+}
+
+.portfolio-aboutme-content {
+    display: flex;
+    flex-direction: row;
+    gap: 48px;
 }
 
 .portfolio-aboutme-heading {
@@ -140,13 +144,26 @@
     height: 64px;
 }
 
+@keyframes glowForCompany {
+    0% {
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0.3);
+    }
+
+    100% {
+        box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.6);
+    }
+}
+
 .portfolio-aboutme-company {
     display: flex;
-    padding: 60px 80px 96px 80px;
+    padding: 20px 20px 20px 20px;
+    margin: 55px;
     margin-bottom: 2rem;
     border-radius: 12px;
     justify-content: space-between;
     background-color: #030712;
+    gap: 20px;
+    animation: glowForCompany 1s ease-in-out infinite alternate;
 }
 
 .portfolio-aboutme-company>img {
@@ -154,21 +171,65 @@
     height: 120px;
 }
 
+@keyframes glowForProject {
+    0% {
+        box-shadow: 0 0 0 rgba(16, 185, 129, 0.3);
+    }
+
+    100% {
+        box-shadow: 0 0 10px 5px rgba(16, 185, 129, 0.6);
+    }
+}
+
+.portfolio-header-project-image {
+    width: 100%;
+    animation: glowForProject 1s ease-in-out infinite alternate;
+}
+
+.portfolio-header-project-innerContent {
+    padding: 1.5rem;
+}
+
 .portfolio-header-project {
-    padding: 60px 80px 96px 80px;
+    padding: 60px 20px 96px 20px;
     display: flex;
     flex-direction: column;
 }
 
 .portfolio-header-project-content {
     background-color: #374151;
-    display: flex;
-    flex-direction: row;
     margin-bottom: 2rem;
-    gap: 2rem;
+    max-width: 700px;
+    align-self: center;
 }
 
-.portfolio-header-project-content>img {
-    width: 300px;
-    height: 300px;
+
+@media (max-width: 768px) {
+    .portfolio-header {
+        flex-wrap: wrap;
+    }
+
+    .portfolio-profile {
+        align-items: center;
+    }
+
+    .portfolio-aboutme-content {
+        flex-direction: column-reverse;
+    }
+
+    .portfolio-header-project-content {
+        flex-direction: column;
+    }
+
+    .portfolio-header-project-image {}
+}
+
+@media (max-width: 550px) {
+    .portfolio-aboutme-company {
+        flex-direction: column;
+    }
+
+    .portfolio-aboutme-company-logo {
+        align-self: center;
+    }
 }
